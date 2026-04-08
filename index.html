@@ -1,0 +1,766 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sehyog Ek Koshish</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+Devanagari:wght@400;700&family=DM+Sans:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,700;1,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --saffron: #E8620A;
+    --saffron-light: #FF8C42;
+    --green: #2D6A4F;
+    --green-light: #52B788;
+    --cream: #FDF6EC;
+    --warm-brown: #5C3D2E;
+    --text: #1a1a1a;
+    --muted: #6b6b6b;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--cream);
+    color: var(--text);
+    overflow-x: hidden;
+  }
+
+  /* ── HEADER ── */
+  header {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    background: rgba(253,246,236,0.95);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid rgba(232,98,10,0.15);
+    padding: 12px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .logo-wrap { display: flex; align-items: center; gap: 10px; }
+  .logo-icon {
+    width: 40px; height: 40px;
+    background: var(--saffron);
+    border-radius: 50%;
+    display: grid; place-items: center;
+    font-size: 18px;
+  }
+  .logo-text { line-height: 1.1; }
+  .logo-text strong {
+    display: block;
+    font-family: 'Noto Serif Devanagari', serif;
+    font-size: 15px;
+    color: var(--saffron);
+  }
+  .logo-text span {
+    font-size: 10px;
+    color: var(--muted);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .donate-btn-header {
+    background: var(--saffron);
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 50px;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    font-family: 'DM Sans', sans-serif;
+  }
+
+  /* ── HERO ── */
+  .hero {
+    min-height: 100svh;
+    padding: 100px 24px 60px;
+    background:
+      radial-gradient(ellipse at top right, rgba(232,98,10,0.12) 0%, transparent 60%),
+      radial-gradient(ellipse at bottom left, rgba(45,106,79,0.10) 0%, transparent 60%),
+      var(--cream);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    position: relative;
+  }
+
+  .hero-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: rgba(232,98,10,0.1);
+    border: 1px solid rgba(232,98,10,0.25);
+    color: var(--saffron);
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 5px 12px;
+    border-radius: 50px;
+    margin-bottom: 20px;
+    width: fit-content;
+  }
+
+  .hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(36px, 9vw, 56px);
+    line-height: 1.1;
+    color: var(--warm-brown);
+    margin-bottom: 6px;
+  }
+
+  .hero h1 em {
+    font-style: italic;
+    color: var(--saffron);
+  }
+
+  .hero-hindi {
+    font-family: 'Noto Serif Devanagari', serif;
+    font-size: clamp(18px, 4.5vw, 28px);
+    color: var(--green);
+    margin-bottom: 20px;
+  }
+
+  .hero p {
+    font-size: 15px;
+    color: var(--muted);
+    line-height: 1.7;
+    max-width: 380px;
+    margin-bottom: 32px;
+  }
+
+  .hero-cta {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    max-width: 300px;
+  }
+
+  .btn-primary {
+    background: var(--saffron);
+    color: white;
+    border: none;
+    padding: 16px 28px;
+    border-radius: 50px;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    font-family: 'DM Sans', sans-serif;
+    text-align: center;
+    text-decoration: none;
+    display: block;
+    transition: transform 0.2s, box-shadow 0.2s;
+    box-shadow: 0 4px 20px rgba(232,98,10,0.3);
+  }
+
+  .btn-primary:active { transform: scale(0.97); }
+
+  .btn-secondary {
+    color: var(--saffron);
+    border: 2px solid var(--saffron);
+    padding: 14px 28px;
+    border-radius: 50px;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    background: transparent;
+    font-family: 'DM Sans', sans-serif;
+    text-align: center;
+    text-decoration: none;
+    display: block;
+  }
+
+  .hero-scroll-hint {
+    position: absolute;
+    bottom: 24px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    color: var(--muted);
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    animation: bounce 2s infinite;
+  }
+
+  @keyframes bounce {
+    0%, 100% { transform: translateX(-50%) translateY(0); }
+    50% { transform: translateX(-50%) translateY(6px); }
+  }
+
+  /* ── IMPACT STRIP ── */
+  .impact-strip {
+    background: var(--warm-brown);
+    padding: 32px 24px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+  }
+
+  .impact-item { text-align: center; }
+  .impact-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 36px;
+    color: var(--saffron-light);
+    line-height: 1;
+    display: block;
+  }
+  .impact-label {
+    font-size: 11px;
+    color: rgba(255,255,255,0.7);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-top: 4px;
+    display: block;
+  }
+
+  /* ── SECTION COMMON ── */
+  section { padding: 60px 24px; }
+
+  .section-label {
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--saffron);
+    margin-bottom: 8px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .section-label::before {
+    content: '';
+    width: 24px;
+    height: 2px;
+    background: var(--saffron);
+    display: inline-block;
+  }
+
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(26px, 7vw, 36px);
+    color: var(--warm-brown);
+    line-height: 1.2;
+    margin-bottom: 24px;
+  }
+
+  /* ── ABOUT ── */
+  .about-bg {
+    background: white;
+    border-radius: 24px;
+    padding: 28px;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 20px rgba(0,0,0,0.05);
+  }
+
+  .about-body {
+    font-size: 15px;
+    color: var(--muted);
+    line-height: 1.75;
+    margin-bottom: 16px;
+  }
+
+  .since-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: var(--green);
+    color: white;
+    padding: 6px 14px;
+    border-radius: 50px;
+    font-size: 12px;
+    font-weight: 600;
+  }
+
+  /* ── PROGRAMS ── */
+  .programs { background: var(--cream); }
+
+  .programs-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .program-card {
+    background: white;
+    border-radius: 20px;
+    padding: 22px;
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+    box-shadow: 0 2px 16px rgba(0,0,0,0.04);
+    border-left: 4px solid transparent;
+    transition: border-color 0.2s;
+  }
+
+  .program-card:nth-child(1) { border-left-color: #E8620A; }
+  .program-card:nth-child(2) { border-left-color: #2D6A4F; }
+  .program-card:nth-child(3) { border-left-color: #C0392B; }
+  .program-card:nth-child(4) { border-left-color: #8E44AD; }
+  .program-card:nth-child(5) { border-left-color: #2980B9; }
+  .program-card:nth-child(6) { border-left-color: #27AE60; }
+  .program-card:nth-child(7) { border-left-color: #F39C12; }
+
+  .prog-icon {
+    font-size: 28px;
+    flex-shrink: 0;
+    width: 52px;
+    height: 52px;
+    border-radius: 14px;
+    background: var(--cream);
+    display: grid;
+    place-items: center;
+  }
+
+  .prog-info h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 17px;
+    color: var(--warm-brown);
+    margin-bottom: 4px;
+  }
+
+  .prog-info p {
+    font-size: 13px;
+    color: var(--muted);
+    line-height: 1.5;
+  }
+
+  /* ── MISSION BAND ── */
+  .mission-band {
+    background: linear-gradient(135deg, var(--green) 0%, #1B4332 100%);
+    padding: 60px 24px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .mission-band::before {
+    content: '🙏';
+    position: absolute;
+    font-size: 180px;
+    opacity: 0.05;
+    top: -20px;
+    right: -20px;
+  }
+
+  .mission-band .section-label { justify-content: center; color: var(--green-light); }
+  .mission-band .section-label::before { background: var(--green-light); }
+
+  .mission-band .section-title { color: white; }
+
+  .mission-quote {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: clamp(18px, 5vw, 24px);
+    color: rgba(255,255,255,0.85);
+    line-height: 1.5;
+    max-width: 400px;
+    margin: 0 auto 24px;
+  }
+
+  /* ── JOIN ── */
+  .join { text-align: center; }
+
+  .volunteer-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin: 24px 0;
+  }
+
+  .vol-card {
+    background: white;
+    border-radius: 16px;
+    padding: 20px 12px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.05);
+    text-align: center;
+  }
+
+  .vol-card .icon { font-size: 28px; margin-bottom: 8px; }
+  .vol-card h4 { font-size: 13px; font-weight: 600; color: var(--warm-brown); margin-bottom: 4px; }
+  .vol-card p { font-size: 11px; color: var(--muted); }
+
+  /* ── GALLERY TEASE ── */
+  .gallery-strip {
+    display: flex;
+    gap: 12px;
+    overflow-x: auto;
+    padding-bottom: 8px;
+    scrollbar-width: none;
+    margin: 0 -24px;
+    padding-left: 24px;
+  }
+
+  .gallery-strip::-webkit-scrollbar { display: none; }
+
+  .gallery-item {
+    flex-shrink: 0;
+    width: 150px;
+    height: 150px;
+    border-radius: 16px;
+    display: grid;
+    place-items: center;
+    font-size: 40px;
+  }
+
+  /* ── CONTACT ── */
+  .contact {
+    background: var(--warm-brown);
+    color: white;
+    text-align: center;
+  }
+
+  .contact .section-title { color: white; }
+  .contact .section-label { justify-content: center; color: var(--saffron-light); }
+  .contact .section-label::before { background: var(--saffron-light); }
+
+  .contact-body {
+    font-size: 14px;
+    color: rgba(255,255,255,0.7);
+    line-height: 1.7;
+    margin-bottom: 28px;
+  }
+
+  .contact-links {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-bottom: 32px;
+  }
+
+  .contact-link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    background: rgba(255,255,255,0.08);
+    border: 1px solid rgba(255,255,255,0.15);
+    border-radius: 12px;
+    padding: 14px;
+    color: white;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 500;
+  }
+
+  .social-row {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    margin-bottom: 32px;
+  }
+
+  .social-btn {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.12);
+    display: grid;
+    place-items: center;
+    font-size: 18px;
+    text-decoration: none;
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    background: #111;
+    color: rgba(255,255,255,0.4);
+    text-align: center;
+    padding: 20px 24px;
+    font-size: 12px;
+    line-height: 1.6;
+  }
+
+  footer span { color: var(--saffron); }
+
+  /* ── FLOATING DONATE ── */
+  .floating-donate {
+    position: fixed;
+    bottom: 24px;
+    right: 20px;
+    z-index: 200;
+    background: var(--saffron);
+    color: white;
+    border: none;
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    font-size: 22px;
+    cursor: pointer;
+    box-shadow: 0 4px 24px rgba(232,98,10,0.45);
+    display: grid;
+    place-items: center;
+    animation: pulse 2.5s infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% { box-shadow: 0 4px 24px rgba(232,98,10,0.45); }
+    50% { box-shadow: 0 4px 40px rgba(232,98,10,0.7); }
+  }
+
+  /* Desktop tweaks */
+  @media (min-width: 640px) {
+    .impact-strip { grid-template-columns: repeat(4, 1fr); }
+    .programs-grid { display: grid; grid-template-columns: 1fr 1fr; }
+    .volunteer-grid { grid-template-columns: repeat(4, 1fr); }
+    .hero-cta { flex-direction: row; max-width: 100%; }
+  }
+
+  @media (min-width: 900px) {
+    .hero { padding: 120px 60px 80px; }
+    section { padding: 80px 60px; }
+    .programs-grid { grid-template-columns: 1fr 1fr 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header>
+  <div class="logo-wrap">
+    <div class="logo-icon">🤝</div>
+    <div class="logo-text">
+      <strong>सहयोग एक कोशिश</strong>
+      <span>Sehyog Ek Koshish</span>
+    </div>
+  </div>
+  <button class="donate-btn-header">Donate Now</button>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-tag">🌱 Since 2018 · Serving Communities</div>
+  <h1><em>Ek Koshish</em><br>for Humanity</h1>
+  <div class="hero-hindi">सेवा ही सबसे बड़ी पूजा है</div>
+  <p>We are Sehyog — a volunteer-driven initiative working to feed, educate, heal, and uplift those living below the poverty line across India.</p>
+  <div class="hero-cta">
+    <a href="#programs" class="btn-primary">Our Programs</a>
+    <a href="#join" class="btn-secondary">Volunteer</a>
+  </div>
+  <div class="hero-scroll-hint">
+    <span>SCROLL</span>
+    <span>↓</span>
+  </div>
+</section>
+
+<!-- IMPACT STRIP -->
+<div class="impact-strip">
+  <div class="impact-item">
+    <span class="impact-num">7+</span>
+    <span class="impact-label">Years Active</span>
+  </div>
+  <div class="impact-item">
+    <span class="impact-num">5K+</span>
+    <span class="impact-label">Meals Served</span>
+  </div>
+  <div class="impact-item">
+    <span class="impact-num">200+</span>
+    <span class="impact-label">Trees Planted</span>
+  </div>
+  <div class="impact-item">
+    <span class="impact-num">500+</span>
+    <span class="impact-label">Families Helped</span>
+  </div>
+</div>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="section-label">About Us</div>
+  <div class="section-title">A Koshish<br>born in 2018</div>
+  <div class="about-bg">
+    <p class="about-body">
+      <strong>Sehyog Ek Koshish</strong> was founded in 2018 with a simple belief — that every small effort together creates a massive change. We are a community of passionate volunteers who show up every month to make sure no one in our neighbourhood goes hungry, uneducated, or unsupported.
+    </p>
+    <p class="about-body">
+      From distributing monthly ration kits to families below the poverty line, to organising blood donation camps and food drives — our work is powered entirely by people who care.
+    </p>
+    <span class="since-badge">🗓️ Serving Since 2018</span>
+  </div>
+</section>
+
+<!-- PROGRAMS -->
+<section id="programs" class="programs">
+  <div class="section-label">What We Do</div>
+  <div class="section-title">Our Programs</div>
+  <div class="programs-grid">
+
+    <div class="program-card">
+      <div class="prog-icon">🍱</div>
+      <div class="prog-info">
+        <h3>₹10 Meal Initiative</h3>
+        <p>Nutritious hot meals served at just ₹10 — because no one should sleep hungry due to cost.</p>
+      </div>
+    </div>
+
+    <div class="program-card">
+      <div class="prog-icon">🛒</div>
+      <div class="prog-info">
+        <h3>Monthly Rashan Drive</h3>
+        <p>Essential grocery & ration kits distributed every month to BPL families in our area.</p>
+      </div>
+    </div>
+
+    <div class="program-card">
+      <div class="prog-icon">📚</div>
+      <div class="prog-info">
+        <h3>Book Distribution</h3>
+        <p>Used & new books given to children who can't afford them — keeping the light of learning alive.</p>
+      </div>
+    </div>
+
+    <div class="program-card">
+      <div class="prog-icon">🩸</div>
+      <div class="prog-info">
+        <h3>Blood Donation Camps</h3>
+        <p>Organised regular blood donation drives, connecting donors to those in critical need.</p>
+      </div>
+    </div>
+
+    <div class="program-card">
+      <div class="prog-icon">🌳</div>
+      <div class="prog-info">
+        <h3>Tree Plantation</h3>
+        <p>Planting trees in schools, parks & roadsides — building a greener tomorrow, one sapling at a time.</p>
+      </div>
+    </div>
+
+    <div class="program-card">
+      <div class="prog-icon">🍲</div>
+      <div class="prog-info">
+        <h3>Food Drives</h3>
+        <p>Large-scale food drives during festivals and emergencies to reach the most vulnerable families.</p>
+      </div>
+    </div>
+
+    <div class="program-card">
+      <div class="prog-icon">🐾</div>
+      <div class="prog-info">
+        <h3>Animal Food Drive</h3>
+        <p>Feeding stray animals with regular food drives — because compassion has no species boundary.</p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- MISSION BAND -->
+<div class="mission-band">
+  <div class="section-label">Our Mission</div>
+  <div class="section-title">Why We Do This</div>
+  <p class="mission-quote">"Every person we feed, every book we give, every tree we plant — is one more koshish toward a better India."</p>
+  <a href="#join" class="btn-primary" style="max-width:240px; margin:0 auto; display:block;">Be Part of It</a>
+</div>
+
+<!-- GALLERY TEASE -->
+<section style="padding: 60px 24px;">
+  <div class="section-label">Moments</div>
+  <div class="section-title">On the Ground</div>
+  <div class="gallery-strip">
+    <div class="gallery-item" style="background:#FDE8D8;">🍱</div>
+    <div class="gallery-item" style="background:#D8F0E8;">📦</div>
+    <div class="gallery-item" style="background:#FFE0E0;">🩸</div>
+    <div class="gallery-item" style="background:#E0F0FF;">📚</div>
+    <div class="gallery-item" style="background:#E8F8E8;">🌳</div>
+    <div class="gallery-item" style="background:#FFF5D8;">🐾</div>
+  </div>
+  <p style="font-size:12px; color:var(--muted); margin-top:12px;">← Swipe to explore · Add your real photos here</p>
+</section>
+
+<!-- JOIN -->
+<section id="join" class="join">
+  <div class="section-label" style="justify-content:center;">Get Involved</div>
+  <div class="section-title">How You<br>Can Help</div>
+  <div class="volunteer-grid">
+    <div class="vol-card">
+      <div class="icon">🙌</div>
+      <h4>Volunteer</h4>
+      <p>Give your time on drives & camps</p>
+    </div>
+    <div class="vol-card">
+      <div class="icon">💰</div>
+      <h4>Donate</h4>
+      <p>Fund meals, ration & supplies</p>
+    </div>
+    <div class="vol-card">
+      <div class="icon">📢</div>
+      <h4>Spread Word</h4>
+      <p>Share our work on social media</p>
+    </div>
+    <div class="vol-card">
+      <div class="icon">🤝</div>
+      <h4>Partner</h4>
+      <p>Collaborate as an org or business</p>
+    </div>
+  </div>
+  <a href="#contact" class="btn-primary" style="max-width:260px; margin:0 auto;">Contact Us to Join</a>
+</section>
+
+<!-- CONTACT -->
+<section id="contact" class="contact">
+  <div class="section-label">Reach Out</div>
+  <div class="section-title">Get in Touch</div>
+  <p class="contact-body">
+    Want to volunteer, donate, or partner with us?<br>
+    We'd love to hear from you. Every hand counts.
+  </p>
+  <div class="contact-links">
+    <a href="tel:+919999999999" class="contact-link">📞 +91 99999 99999</a>
+    <a href="mailto:sehyog@example.com" class="contact-link">✉️ sehyog@example.com</a>
+    <a href="#" class="contact-link">📍 Your City, India</a>
+  </div>
+  <div class="social-row">
+    <a href="#" class="social-btn">📘</a>
+    <a href="#" class="social-btn">📸</a>
+    <a href="#" class="social-btn">▶️</a>
+    <a href="#" class="social-btn">💬</a>
+  </div>
+  <a href="#" class="btn-primary" style="max-width:220px; margin:0 auto; display:block; background:var(--saffron);">Donate Now 🧡</a>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p>© 2024 <span>Sehyog Ek Koshish</span> · Serving Since 2018</p>
+  <p>Made with ❤️ by Volunteers, for the Community</p>
+</footer>
+
+<!-- FLOATING DONATE BUTTON -->
+<button class="floating-donate" title="Donate Now">🧡</button>
+
+<script>
+  // Smooth nav
+  document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', e => {
+      e.preventDefault();
+      const el = document.querySelector(a.getAttribute('href'));
+      if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+  });
+
+  // Intersection observer for subtle fade-in
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.style.opacity = '1';
+        e.target.style.transform = 'translateY(0)';
+      }
+    });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll('.program-card, .vol-card, .about-bg').forEach(el => {
+    el.style.opacity = '0';
+    el.style.transform = 'translateY(20px)';
+    el.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+    observer.observe(el);
+  });
+</script>
+</body>
+</html>
